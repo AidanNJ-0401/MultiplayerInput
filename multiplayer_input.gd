@@ -69,6 +69,9 @@ func _input(event):
 			port_inputs[device_ports[device]]["right_stick"].x = event.axis_value
 		elif action == "right_stick_up" or action == "right_stick_down":
 			port_inputs[device_ports[device]]["right_stick"].y = event.axis_value
+		else:
+			port_inputs[device_ports[device]][action] = event.axis_value
+	
 
 var counter: int = 0
 func _process(_delta):
