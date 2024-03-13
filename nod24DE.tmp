@@ -9,14 +9,14 @@
 script = ExtResource("1_74aye")
 
 [node name="Stage" type="Node2D" parent="."]
-z_index = 1
 position = Vector2(575.5, 617)
 script = ExtResource("1_inhnf")
+width = 560
+floor_elevation = 370
 
 [node name="Character" type="Node2D" parent="."]
 position = Vector2(816, 448)
 script = ExtResource("1_fdi2l")
-pushbox = Rect2i(-12800, -12800, 12800, 12800)
 
 [node name="Sprite2D" type="Sprite2D" parent="Character"]
 position = Vector2(0, -64)

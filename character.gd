@@ -2,8 +2,12 @@ class_name Character extends Node2D
 
 
 @export var actions: Array[Action]
+@export var pushbox: Rect2i = Rect2i(-128, -128, 128, 128)
+var is_grounded: bool = false
+var has_traction: bool = false
 
-var int_position: Vector2i
+var int_position: Vector2i = Vector2i(0, 0)
+var global_int_position: Vector2i = Vector2i(0, 0)
 ## last integer value 32 bit float can represent without rounding,
 ## both positively and negatively
 var MAX_POSITION: int = 16777216
@@ -29,9 +33,17 @@ func displace(displacement: Vector2i):
 func move(p_position: Vector2i):
 	if (not is_valid_position(p_position)):
 		return FAILED
-	self.position = p_position
+	self.int_position = p_position
+	self.position = int_position/100.0
+
+
+func global_move(p_position: Vector2i):
+	if (not is_valid_position(p_position)):
+		return FAILED
+	self.global_int_position = p_position
+	self.global_position = self.global_int_position/100.0
 
 
 func is_valid_position(p_position: Vector2i) -> bool:
-	return (abs(p_position) <= MAX_POSITION
-			or abs(p_position) <= MAX_POSITION)
+	return (abs(p_position.x) <= MAX_POSITION
+			or abs(p_position.y) <= MAX_POSITION)
