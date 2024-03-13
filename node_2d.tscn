@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dud21uhue50ct"]
+[gd_scene load_steps=4 format=3 uid="uid://dud21uhue50ct"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://character.gd" id="1_fdi2l"]
+[ext_resource type="Script" path="res://stage.gd" id="1_inhnf"]
+[ext_resource type="Texture2D" uid="uid://dnt3n1ju5cg3m" path="res://icon.svg" id="3_topjx"]
+
+[node name="BattleLogic" type="Node2D"]
+
+[node name="Stage" type="Node2D" parent="."]
+position = Vector2(578, 321)
+script = ExtResource("1_inhnf")
+width = 310
+floor_elevation = 370
+
+[node name="Character" type="Node2D" parent="."]
+position = Vector2(668, 226)
+script = ExtResource("1_fdi2l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+position = Vector2(0, -64)
+texture = ExtResource("3_topjx")

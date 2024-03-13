@@ -1,7 +1,7 @@
 extends Node
 
 
-var device_ports: Array[int] = [0, -1, -1, -1, -1, -1, -1, -1, 1]
+var device_ports: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
 
 var inputs: Dictionary = {
 	"up" : false,
@@ -71,14 +71,18 @@ func _input(event):
 			port_inputs[device_ports[device]]["right_stick"].y = event.axis_value
 		else:
 			port_inputs[device_ports[device]][action] = event.axis_value
-	
 
-var counter: int = 0
+
 func _process(_delta):
-	if counter >= 10:
-		print(port_inputs[0])
-		counter = -1
-	counter += 1
+	pass
+
+
+func port_in_range(port: int) -> bool:
+	return port < device_ports.size() and port >= 0
+
+
+func device_in_range(device: int) -> bool:
+	return device <= 8 and device >= 0
 
 
 func _device_id(event: InputEvent) -> int:
@@ -86,3 +90,53 @@ func _device_id(event: InputEvent) -> int:
 		return 8
 	else:
 		return event.device
+
+
+
+
+
+func disconnect_device(device: int):
+	pass
+
+
+class Device:
+	var id: int
+	pass
+
+
+## Connects devices to ports. Holds inputs to be sent via a group.
+class Ports extends Node:
+	var device_ports: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
+	var port_to_device_info: Dictionary = {
+		0 : { },
+		1 : { },
+		2 : { },
+		3 : { },
+		4 : { },
+		5 : { },
+		6 : { },
+		7 : { },
+		8 : { }
+	}
+	
+	
+	func port_in_range(port: int) -> bool:
+		return port < device_ports.size() and port >= 0
+	pass
+	
+	
+	func connect_device(device: int, port: int):
+		if (port_in_range(port)
+				or device > 8 or device < 0):
+			return ERR_PARAMETER_RANGE_ERROR
+		
+		device_ports[device] = port
+		port_to_device_info[port] = get_device_info(device)
+		
+		return OK
+	
+	func get_device_info(device: int) -> Dictionary:
+		if device == 8:
+			return { "keyboard": null }
+		else:
+			return Input.get_joy_info(device)
