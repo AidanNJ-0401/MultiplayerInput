@@ -12,17 +12,23 @@ func _ready():
 var p1_velocity = Vector2i(0, 0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#Resistance
+	#Friction
 	if Player1.is_grounded:
-		p1_velocity.x = p1_velocity.x*99/100
-		if p1_velocity == Vector2i(0, 0):
+		if not Player1.has_traction:
+			p1_velocity.x = p1_velocity.x*99/100
+		else:
+			p1_velocity = Vector2i(0, 0)
+		if not Player1.has_traction and p1_velocity == Vector2i(0, 0):
 			Player1.has_traction = true
-	p1_velocity.y += 7
+	
+	#Gravity
+	if not Player1.is_grounded:
+		p1_velocity.y += 7
 	var direction = int(Input.is_action_pressed("right")) * 1 + int(Input.is_action_pressed("left")) * -1 + int(Input.is_action_pressed("down")) * -3 + int(Input.is_action_pressed("up")) * 3 + 5
 	#Summing
 	if Player1.is_grounded and Player1.has_traction:
 		match direction:
-			5:
+			1, 2, 3:
 				p1_velocity = Vector2i(0, 0)
 			6:
 				p1_velocity = Vector2i(150, 0)
@@ -53,16 +59,23 @@ func _process(delta):
 		p1_velocity.x = -Player1.int_position.x - Player1.pushbox.size.x/2 + (Stage.position.x * 100 + Stage.width)
 	elif Player1.int_position.x - Player1.pushbox.size.x/2 + p1_velocity.x < Stage.position.x * 100 - Stage.width:
 		p1_velocity.x = Player1.pushbox.size.x/2 - Player1.int_position.x + (Stage.position.x * 100 - Stage.width)
-	if Player1.int_position.y + p1_velocity.y >= Stage.position.y * 100:
+	if Player1.int_position.y + p1_velocity.y >= Stage.position.y * 100 and not Player1.is_grounded:
+		var old_y_velocity = p1_velocity.y
+		p1_velocity.y = Stage.position.y * 100 - Player1.int_position.y
+		Player1.displace(Vector2i(p1_velocity.x/max(old_y_velocity / max(p1_velocity.y, 1), 1), p1_velocity.y))
 		p1_velocity.y = 0
 		Player1.is_grounded = true
 	print(p1_velocity)
-	match (Player1.is_grounded):
-		true:
-			Player1.displace(Vector2i(p1_velocity.x, 0))
-			Player1.move(Vector2i(Player1.int_position.x, Stage.position.y * 100))
-		false:
-			Player1.displace(p1_velocity)
+	#match (Player1.is_grounded):
+		#true:
+			#Player1.displace(Vector2i(p1_velocity.x, 0))
+			#Player1.move(Vector2i(Player1.int_position.x, Stage.position.y * 100))
+		#false:
+	Player1.displace(p1_velocity)
 
 
-#
+#Player1.int_position.y + p1_velocity.y = Stage.position.y * 100
+#Player1.int_position.y + p1_velocity.y - Stage.position.y * 100 = 0
+#Player1.int_position.y - Stage.position.y * 100 = -p1_velocity.y
+#-Player1.int_position.y + Stage.position.y * 100 = p1_velocity.y
+#Stage.position.y * 100 - Player1.int_position.y = p1_velocity.y
