@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dud21uhue50ct"]
+[gd_scene load_steps=13 format=3 uid="uid://dud21uhue50ct"]
 
 [ext_resource type="Script" path="res://battle_logic.gd" id="1_74aye"]
 [ext_resource type="Script" path="res://character.gd" id="1_fdi2l"]
 [ext_resource type="Script" path="res://stage.gd" id="1_inhnf"]
 [ext_resource type="Texture2D" uid="uid://dnt3n1ju5cg3m" path="res://icon.svg" id="3_topjx"]
+[ext_resource type="Script" path="res://frame.gd" id="5_i4k7c"]
+[ext_resource type="Script" path="res://action.gd" id="6_gx3bw"]
+[ext_resource type="Texture2D" uid="uid://b5whyi06pi6rm" path="res://annie/idle/stand_idle/01_annie_1p.png" id="7_0jxg3"]
+[ext_resource type="Texture2D" uid="uid://l3jepmltrnek" path="res://annie/idle/stand_idle/02_1_annie_1p.png" id="8_2potj"]
+[ext_resource type="Texture2D" uid="uid://cjki4642u74hl" path="res://annie/idle/stand_idle/03_1_annie_1p.png" id="9_apxjk"]
+[ext_resource type="Texture2D" uid="uid://cayk1kac5v62b" path="res://annie/idle/stand_idle/04_1_annie_1p.png" id="10_mxtv2"]
+[ext_resource type="Texture2D" uid="uid://b5v3mwk2mio4g" path="res://annie/idle/stand_idle/05_annie_1p.png" id="11_4fb5w"]
+[ext_resource type="Texture2D" uid="uid://bqiti3jernt1s" path="res://annie/idle/stand_idle/06_annie_1p.png" id="12_ejumr"]
 
 [node name="BattleLogic" type="Node2D"]
 script = ExtResource("1_74aye")
@@ -13,11 +21,66 @@ z_index = 1
 position = Vector2(575.5, 617)
 script = ExtResource("1_inhnf")
 
-[node name="Character" type="Node2D" parent="."]
+[node name="Character" type="Node2D" parent="." node_paths=PackedStringArray("CurrentAction")]
 position = Vector2(816, 448)
+scale = Vector2(0.41, 0.41)
 script = ExtResource("1_fdi2l")
+char_name = "Annie"
 pushbox = Rect2i(-12800, -12800, 12800, 12800)
+CurrentAction = NodePath("Idle")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character"]
 position = Vector2(0, -64)
 texture = ExtResource("3_topjx")
+
+[node name="Idle" type="Node2D" parent="Character"]
+position = Vector2(0, -300)
+script = ExtResource("6_gx3bw")
+
+[node name="Frame1" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame1"]
+texture = ExtResource("7_0jxg3")
+
+[node name="Frame2" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame2"]
+texture = ExtResource("8_2potj")
+
+[node name="Frame3" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame3"]
+texture = ExtResource("9_apxjk")
+
+[node name="Frame4" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame4"]
+texture = ExtResource("10_mxtv2")
+
+[node name="Frame5" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame5"]
+texture = ExtResource("11_4fb5w")
+
+[node name="Frame6" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame6"]
+texture = ExtResource("12_ejumr")

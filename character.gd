@@ -1,8 +1,11 @@
 class_name Character extends Node2D
 
 
-@export var actions: Array[Action]
+@export var char_name:String
 @export var pushbox: Rect2i = Rect2i(-128, -128, 128, 128)
+@export var CurrentAction: Action
+var frame_number: int = 0
+var frame_age: int = 0
 var is_grounded: bool = false
 var has_traction: bool = false
 
@@ -15,7 +18,7 @@ var MAX_POSITION: int = 16777216
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_children()[1].relations["transition_action"] = get_children()[1]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
