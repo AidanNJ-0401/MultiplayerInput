@@ -18,7 +18,13 @@ var MAX_POSITION: int = 16777216
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_children()[1].relations["transition_action"] = get_children()[1]
+	var Idle = get_node("Idle")
+	Idle.relations["transition_action"] = Idle
+	Idle.data["stay_frames"] = 5
+	var WalkF = get_node("WalkForward")
+	WalkF.relations["transition_action"] = Idle
+	WalkF.data["stay_frames"] = 5
+	WalkF.data["loop_frames"] = [3, 10]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

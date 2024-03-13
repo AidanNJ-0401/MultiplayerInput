@@ -11,9 +11,11 @@ func _ready():
 	curr_frame(Player1).visible = true
 
 var p1_velocity = Vector2i(0, 0)
+var direction: int
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	do_physics_phase()
+	direction = int(Input.is_action_pressed("right")) * 1 + int(Input.is_action_pressed("left")) * -1 + int(Input.is_action_pressed("down")) * -3 + int(Input.is_action_pressed("up")) * 3 + 5
 	do_action_phase()
 
 func do_physics_phase():
@@ -29,7 +31,7 @@ func do_physics_phase():
 	#Gravity
 	if not Player1.is_grounded:
 		p1_velocity.y += 45
-	var direction = int(Input.is_action_pressed("right")) * 1 + int(Input.is_action_pressed("left")) * -1 + int(Input.is_action_pressed("down")) * -3 + int(Input.is_action_pressed("up")) * 3 + 5
+	
 	#Summing
 	if Player1.is_grounded and Player1.has_traction:
 		match direction:
@@ -68,7 +70,7 @@ func do_physics_phase():
 		var old_y_velocity = p1_velocity.y
 		p1_velocity.y = 0
 		Player1.is_grounded = true
-	print(p1_velocity)
+	
 	match (Player1.is_grounded):
 		true:
 			Player1.displace(Vector2i(p1_velocity.x, 0))
@@ -78,21 +80,56 @@ func do_physics_phase():
 
 
 func do_action_phase():
-	if (not curr_frame(Player1).data.has("stay_frames")):
+	#Cancel has occured
+	if (direction == 6):
+		if Player1.CurrentAction != Player1.get_node("WalkForward"):
+			curr_frame(Player1).visible = false
+			Player1.CurrentAction = Player1.get_node("WalkForward")
+			Player1.frame_number = 0
+			Player1.frame_age = 0
+			curr_frame(Player1).visible = true
+			return
+	elif Player1.CurrentAction == Player1.get_node("WalkForward") and Player1.frame_number < 12:
 		curr_frame(Player1).visible = false
-	elif (curr_frame(Player1).data["stay_frames"] > Player1.frame_age):
+		Player1.frame_number = 12
+		Player1.frame_age = 0
+		curr_frame(Player1).visible = true
+		return
+	print(Player1.frame_number)
+	#No cancel has occured
+	#repeat frame
+	var stay_frames: int = -1
+	if (curr_frame(Player1).data.has("stay_frames")):
+		stay_frames = curr_frame(Player1).data["stay_frames"]
+	elif (Player1.CurrentAction.data.has("stay_frames")):
+		stay_frames = Player1.CurrentAction.data["stay_frames"]
+	if (stay_frames == -1):
+		curr_frame(Player1).visible = false
+		Player1.frame_number += 1
+		curr_frame(Player1).visible = true
+		return
+	elif (stay_frames > Player1.frame_age):
 		Player1.frame_age += 1
-	else:
+		return
+	
+	if Player1.CurrentAction.data.has("loop_frames"):
+		if Player1.frame_number == Player1.CurrentAction.data["loop_frames"][1]:
+			curr_frame(Player1).visible = false
+			Player1.frame_number = Player1.CurrentAction.data["loop_frames"][0]
+			curr_frame(Player1).visible = true
+	
+	#typical action followup
+	if Player1.frame_number >= action_frames(Player1).size() - 1:
 		curr_frame(Player1).visible = false
-	
-	Player1.frame_number += 1
-	
-	if Player1.frame_number >= action_frames(Player1).size():
 		Player1.CurrentAction = Player1.CurrentAction.relations["transition_action"]
 		Player1.frame_number = 0
-	
-	curr_frame(Player1).visible = true
-
+		Player1.frame_age = 0
+		curr_frame(Player1).visible = true
+	else:
+		curr_frame(Player1).visible = false
+		Player1.frame_number += 1
+		Player1.frame_age = 0
+		curr_frame(Player1).visible = true
 
 func action_frames(player: Character) -> Array[Node]:
 	return Player1.CurrentAction.get_children()

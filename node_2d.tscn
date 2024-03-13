@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dud21uhue50ct"]
+[gd_scene load_steps=33 format=3 uid="uid://dud21uhue50ct"]
 
 [ext_resource type="Script" path="res://battle_logic.gd" id="1_74aye"]
 [ext_resource type="Script" path="res://character.gd" id="1_fdi2l"]
 [ext_resource type="Script" path="res://stage.gd" id="1_inhnf"]
-[ext_resource type="Texture2D" uid="uid://dnt3n1ju5cg3m" path="res://icon.svg" id="3_topjx"]
 [ext_resource type="Script" path="res://frame.gd" id="5_i4k7c"]
 [ext_resource type="Script" path="res://action.gd" id="6_gx3bw"]
 [ext_resource type="Texture2D" uid="uid://b5whyi06pi6rm" path="res://annie/idle/stand_idle/01_annie_1p.png" id="7_0jxg3"]
@@ -12,6 +11,27 @@
 [ext_resource type="Texture2D" uid="uid://cayk1kac5v62b" path="res://annie/idle/stand_idle/04_1_annie_1p.png" id="10_mxtv2"]
 [ext_resource type="Texture2D" uid="uid://b5v3mwk2mio4g" path="res://annie/idle/stand_idle/05_annie_1p.png" id="11_4fb5w"]
 [ext_resource type="Texture2D" uid="uid://bqiti3jernt1s" path="res://annie/idle/stand_idle/06_annie_1p.png" id="12_ejumr"]
+[ext_resource type="Texture2D" uid="uid://dri72u3v5h0n5" path="res://annie/idle/stand_idle/02_2_annie_1p.png" id="13_wx3i3"]
+[ext_resource type="Texture2D" uid="uid://dfreciswmxxfw" path="res://annie/idle/stand_idle/03_2_annie_1p.png" id="14_m8lw6"]
+[ext_resource type="Texture2D" uid="uid://y35e4qlomjf0" path="res://annie/idle/stand_idle/04_2_annie_1p.png" id="15_faaiu"]
+[ext_resource type="Texture2D" uid="uid://b5wo602b5u5yd" path="res://annie/idle/stand_idle/02_annie_1p.png" id="16_4gyab"]
+[ext_resource type="Texture2D" uid="uid://c5kt0ih8buig1" path="res://annie/idle/stand_idle/03_annie_1p.png" id="17_r4k2v"]
+[ext_resource type="Texture2D" uid="uid://borv22arfrku2" path="res://annie/idle/stand_idle/04_3_annie_1p.png" id="18_5lx6o"]
+[ext_resource type="Texture2D" uid="uid://44a82lr8dnbg" path="res://annie/movement/walk_forward/01_annie_1p.png" id="18_jqk2r"]
+[ext_resource type="Texture2D" uid="uid://bays81igeer3" path="res://annie/movement/walk_forward/02_annie_1p.png" id="19_wv7pl"]
+[ext_resource type="Texture2D" uid="uid://dc74ntxrhk74h" path="res://annie/movement/walk_forward/03_annie_1p.png" id="20_54rth"]
+[ext_resource type="Texture2D" uid="uid://woecb63u3i7x" path="res://annie/movement/walk_forward/04_annie_1p.png" id="21_sat1u"]
+[ext_resource type="Texture2D" uid="uid://dk8bh23jei45t" path="res://annie/movement/walk_forward/05_annie_1p.png" id="22_jr7qb"]
+[ext_resource type="Texture2D" uid="uid://duvisevrhtcdk" path="res://annie/movement/walk_forward/06_annie_1p.png" id="23_0nypg"]
+[ext_resource type="Texture2D" uid="uid://dsvp0kdjyx82i" path="res://annie/movement/walk_forward/07_annie_1p.png" id="24_vki0o"]
+[ext_resource type="Texture2D" uid="uid://b5wdoq242428b" path="res://annie/movement/walk_forward/08_annie_1p.png" id="25_8m2ow"]
+[ext_resource type="Texture2D" uid="uid://d24wmei14ceyi" path="res://annie/movement/walk_forward/09_annie_1p.png" id="26_h0dk0"]
+[ext_resource type="Texture2D" uid="uid://dmy4x1cj7n2ds" path="res://annie/movement/walk_forward/10_annie_1p.png" id="26_hbqfq"]
+[ext_resource type="Texture2D" uid="uid://bq31e1r2anfec" path="res://annie/movement/walk_forward/11_annie_1p.png" id="27_aqaf3"]
+[ext_resource type="Texture2D" uid="uid://cwkmvqp7pndk7" path="res://annie/movement/walk_forward/12_annie_1p.png" id="28_c52f3"]
+[ext_resource type="Texture2D" uid="uid://bj3j82llou4jj" path="res://annie/movement/walk_forward/13_annie_1p.png" id="29_kx3ea"]
+[ext_resource type="Texture2D" uid="uid://jnvaa2iq3xyy" path="res://annie/movement/walk_forward/14_annie_1p.png" id="30_jw2ws"]
+[ext_resource type="Texture2D" uid="uid://d3idvofoiq14x" path="res://annie/movement/walk_forward/15_annie_1p.png" id="31_vhy3m"]
 
 [node name="BattleLogic" type="Node2D"]
 script = ExtResource("1_74aye")
@@ -22,28 +42,24 @@ position = Vector2(575.5, 617)
 script = ExtResource("1_inhnf")
 
 [node name="Character" type="Node2D" parent="." node_paths=PackedStringArray("CurrentAction")]
-position = Vector2(816, 448)
+position = Vector2(584, 602)
 scale = Vector2(0.41, 0.41)
 script = ExtResource("1_fdi2l")
 char_name = "Annie"
 pushbox = Rect2i(-12800, -12800, 12800, 12800)
 CurrentAction = NodePath("Idle")
 
-[node name="Sprite2D" type="Sprite2D" parent="Character"]
-position = Vector2(0, -64)
-texture = ExtResource("3_topjx")
-
 [node name="Idle" type="Node2D" parent="Character"]
-position = Vector2(0, -300)
+position = Vector2(-270.732, -617.073)
 script = ExtResource("6_gx3bw")
 
 [node name="Frame1" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
-visible = false
 script = ExtResource("5_i4k7c")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame1"]
 texture = ExtResource("7_0jxg3")
+centered = false
 
 [node name="Frame2" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
 visible = false
@@ -52,30 +68,37 @@ sprite = NodePath("../Frame1/Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame2"]
 texture = ExtResource("8_2potj")
+centered = false
 
 [node name="Frame3" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
 visible = false
+position = Vector2(-1, 0)
 script = ExtResource("5_i4k7c")
 sprite = NodePath("../Frame1/Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame3"]
 texture = ExtResource("9_apxjk")
+centered = false
 
 [node name="Frame4" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
 visible = false
+position = Vector2(-1, 0)
 script = ExtResource("5_i4k7c")
 sprite = NodePath("../Frame1/Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame4"]
 texture = ExtResource("10_mxtv2")
+centered = false
 
 [node name="Frame5" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
 visible = false
+position = Vector2(-1, 0)
 script = ExtResource("5_i4k7c")
 sprite = NodePath("../Frame1/Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame5"]
 texture = ExtResource("11_4fb5w")
+centered = false
 
 [node name="Frame6" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
 visible = false
@@ -84,3 +107,242 @@ sprite = NodePath("../Frame1/Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame6"]
 texture = ExtResource("12_ejumr")
+centered = false
+
+[node name="Frame7" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame7"]
+texture = ExtResource("7_0jxg3")
+centered = false
+
+[node name="Frame8" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame8"]
+texture = ExtResource("13_wx3i3")
+centered = false
+
+[node name="Frame9" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame9"]
+texture = ExtResource("14_m8lw6")
+centered = false
+
+[node name="Frame10" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame10"]
+texture = ExtResource("15_faaiu")
+centered = false
+
+[node name="Frame11" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame11"]
+texture = ExtResource("11_4fb5w")
+centered = false
+
+[node name="Frame12" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame12"]
+texture = ExtResource("12_ejumr")
+centered = false
+
+[node name="Frame13" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame13"]
+texture = ExtResource("7_0jxg3")
+centered = false
+
+[node name="Frame14" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame14"]
+texture = ExtResource("16_4gyab")
+centered = false
+
+[node name="Frame15" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame15"]
+texture = ExtResource("17_r4k2v")
+centered = false
+
+[node name="Frame16" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame16"]
+texture = ExtResource("18_5lx6o")
+centered = false
+
+[node name="Frame17" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+position = Vector2(-1, 0)
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame17"]
+texture = ExtResource("11_4fb5w")
+centered = false
+
+[node name="Frame18" type="Node2D" parent="Character/Idle" node_paths=PackedStringArray("sprite")]
+visible = false
+script = ExtResource("5_i4k7c")
+sprite = NodePath("../Frame1/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Idle/Frame18"]
+texture = ExtResource("12_ejumr")
+centered = false
+
+[node name="WalkForward" type="Node2D" parent="Character"]
+position = Vector2(-270.732, -617.073)
+script = ExtResource("6_gx3bw")
+
+[node name="Frame1" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame1"]
+texture = ExtResource("18_jqk2r")
+centered = false
+
+[node name="Frame2" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame2"]
+texture = ExtResource("19_wv7pl")
+centered = false
+
+[node name="Frame3" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame3"]
+texture = ExtResource("20_54rth")
+centered = false
+
+[node name="Frame4" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame4"]
+texture = ExtResource("21_sat1u")
+centered = false
+
+[node name="Frame5" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame5"]
+texture = ExtResource("22_jr7qb")
+centered = false
+
+[node name="Frame6" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame6"]
+texture = ExtResource("23_0nypg")
+centered = false
+
+[node name="Frame7" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame7"]
+texture = ExtResource("24_vki0o")
+centered = false
+
+[node name="Frame8" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame8"]
+texture = ExtResource("25_8m2ow")
+centered = false
+
+[node name="Frame9" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame9"]
+texture = ExtResource("26_h0dk0")
+centered = false
+
+[node name="Frame10" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame10"]
+texture = ExtResource("26_hbqfq")
+centered = false
+
+[node name="Frame11" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame11"]
+texture = ExtResource("27_aqaf3")
+centered = false
+
+[node name="Frame12" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame12"]
+texture = ExtResource("28_c52f3")
+centered = false
+
+[node name="Frame13" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame13"]
+texture = ExtResource("29_kx3ea")
+centered = false
+
+[node name="Frame14" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame14"]
+texture = ExtResource("30_jw2ws")
+centered = false
+
+[node name="Frame15" type="Node2D" parent="Character/WalkForward"]
+visible = false
+script = ExtResource("5_i4k7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/WalkForward/Frame15"]
+texture = ExtResource("31_vhy3m")
+centered = false

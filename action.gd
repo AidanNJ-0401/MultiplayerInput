@@ -5,3 +5,4 @@ class_name Action extends Node2D
 @export var frames: Array[Frame] = []
 @export var int_position: Vector2i
 @export var relations: Dictionary #Array: Dictionary
+@export var data: Dictionary
